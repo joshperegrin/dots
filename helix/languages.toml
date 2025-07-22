@@ -1,0 +1,74 @@
+
+[language-server.tailwindcss-ls]
+command = "tailwindcss-language-server"
+args = ["--stdio"]
+
+[language-server.tailwindcss-ls.config]
+classAttributes = ['class', 'className', 'class:list', 'classList', 'ngClass']
+
+[[language]]
+name = "html"
+language-servers = [ "vscode-html-language-server", "tailwindcss-ls" ]
+
+[[language]]
+name = "css"
+language-servers = [ "vscode-css-language-server", "tailwindcss-ls" ]
+
+[[language]]
+name = "jsx"
+language-servers = [ "typescript-language-server", "tailwindcss-ls" ]
+
+[[language]]
+name = "tsx"
+language-servers = [ "typescript-language-server", "tailwindcss-ls" ]
+
+[[language]]
+name="markdown"
+language-servers = ["marksman", "typos"]
+soft-wrap= {enable=true, max-wrap=25, max-indent-retain=0, wrap-indicator=""}
+text-width = 30
+
+[language-server.typos]
+command="typos-lsp"
+
+[language-server.typescript-language-server.config]
+plugins = [{  name = "@vue/typescript-plugin", location = "/home/josh/.local/lib/node_modules/@vue/language-server", languages = ["vue"] }]
+
+[language-server.volar]
+command = "vue-language-server"
+args = ["--stdio"]
+
+[language-server.volar.config]
+vue = { hybridMode = false }
+typescript = { tsdk = "/home/josh/.local/lib/node_modules/typescript/lib" }
+
+
+[[language]]
+name = "vue"
+scope = "source.vue"
+injection-regex = "vue"
+file-types = ["vue"]
+roots = ["package.json", ".git"]
+auto-format = false
+language-servers = ["volar"]
+formatter = { command = 'prettier', args = ["--parser", "vue"] }
+
+[[language]]
+name = "python"
+language-servers = ["pylsp"]
+
+[language-server.pylsp.config.pylsp]
+plugins.pylsp_mypy.enabled = true
+plugins.pylsp_mypy.live_mode = true
+
+[language-server.godot]
+command = "nc" 
+args = [ "127.0.0.1", "6005"]
+
+[[language]]
+name = "gdscript"
+language-servers = [ "godot" ]
+
+[language-server.qmlls]
+args = ["-E"]
+command = "qmlls"

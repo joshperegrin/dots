@@ -1,0 +1,22 @@
+
+theme="base16_transparent"
+
+[editor]
+bufferline='multiple'
+line-number='relative'
+
+[editor.indent-guides]
+render = true
+character = "│"
+
+[keys.normal]
+A-j=["extend_to_line_bounds", "delete_selection", "paste_after"]
+A-k=["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+x = "extend_line"
+X = ["goto_first_nonwhitespace", "extend_to_line_end"]
+V = ["ensure_selections_forward", "extend_to_line_end"]
+C-F = [":new", ":insert-output lf-pick", ":theme default", "select_all", "split_selection_on_newline", "goto_file", "goto_last_modified_file", ":bc!", ":theme base16_transparent"]
+
+C-q = ":bclose"
+
+
