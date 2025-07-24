@@ -3,7 +3,6 @@
 ### EXEC PROGRAMS
 exec swww-daemon
 exec wl-paste --watch cliphist store
-exec sway_startup
 exec dunst
 
 ### DEFAULTS
@@ -18,8 +17,8 @@ set $right l
 
 # Default Apps
 set $term foot
-set $rofi_drun rofi -show drun -theme ~/.config/rofi/launchers/type-4/style-5.rasi
-set $rofi_run rofi -show run -theme ~/.config/rofi/launchers/type-4/style-5_1.rasi
+set $rofi_drun rofi -show drun -theme ~/.config/rofi/themes/listview-with-icons.rasi
+set $rofi_run rofi -show run -theme ~/.config/rofi/themes/listview-without-icons.rasi
 set $browser1 flatpak run io.github.ungoogled_software.ungoogled_chromium
 set $browser2 firefox
 set $file thunar
@@ -137,7 +136,7 @@ floating_modifier $mod normal # Drag and Resize w/ mouse
 bindsym $mod+q kill # Kill focused window
 bindsym $mod+Shift+c exec swaymsg reload 
 # bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
-bindsym $mod+Shift+e exec ~/.config/rofi/applets/bin/powermenu.sh
+bindsym $mod+Shift+e exec ~/.config/rofi/powermenu.sh
 
 ### UTILITIES
 # Audio Control via PulseAudio
@@ -156,10 +155,10 @@ bindsym $mod+Shift+s     exec grimshot savecopy anything
 bindsym $mod+Ctrl+s      exec ocrdesktop
 
 # Other Scripts
-bindsym $mod+t exec python3 /home/josh/bin/swww_change_2.py > /tmp/swww_change.log 2>&1
-bindsym $mod+Shift+v exec rofi -modi clipboard:/home/josh/bin/cliphist-rofi-img -show clipboard -show-icons -theme ~/.config/rofi/launchers/type-4/style-5_1.rasi
-bindsym $mod+Shift+period exec rofi -modi emoji -show emoji -theme ~/.config/rofi/launchers/type-4/style-5_1.rasi
-bindsym $mod+period exec rofi -modi nerdy -show nerdy -theme ~/.config/rofi/launchers/type-4/style-5_1.rasi
+bindsym $mod+t exec python3 /home/josh/bin/swww_change.py
+bindsym $mod+Shift+v exec rofi -modi clipboard:/home/josh/bin/cliphist-rofi-img -show clipboard -show-icons -theme ~/.config/rofi/themes/listview-with-icons.rasi
+bindsym $mod+Shift+period exec rofi -modi emoji -show emoji -theme ~/.config/rofi/themes/listview-without-icons.rasi
+bindsym $mod+period exec rofi -modi nerdy -show nerdy -theme ~/.config/rofi/themes/listview-without-icons.rasi
 
 ### WAYBAR
 bar {
@@ -187,4 +186,3 @@ client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
 client.background       #ffffff
-

@@ -1,0 +1,4 @@
+rofi-wayland
+rofi-emoji
+rofi-nerdy
+cliphist
