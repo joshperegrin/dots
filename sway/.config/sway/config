@@ -150,8 +150,8 @@ bindsym --locked XF86MonBrightnessDown exec brightnessctl set 10%-
 bindsym --locked XF86MonBrightnessUp exec brightnessctl set 10%+
  
 # Screenshot
-bindsym $mod+s           exec grimshot savecopy screen
-bindsym $mod+Shift+s     exec grimshot savecopy anything
+bindsym $mod+s           exec bash -c 'f="$HOME/Pictures/screenshot_$(date +%F_%T).png"; grim "$f" && wl-copy < "$f" && notify-send -i "$f" "Screenshot saved" "$f"'
+bindsym $mod+Shift+s     exec slurp | xargs -I{} sh -c 'f="$HOME/Pictures/ss_$(date +%Y-%m-%d_%H-%M-%S).png"; grim -g "{}" "$f" && wl-copy < "$f" && notify-send -i "$f" "Screenshot saved" "$f"'
 bindsym $mod+Ctrl+s      exec ocrdesktop
 
 # Other Scripts
