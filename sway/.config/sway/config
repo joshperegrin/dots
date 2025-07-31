@@ -179,7 +179,7 @@ for_window [app_id="thunar"] floating enable
 for_window [app_id="timeshift-gtk"] floating enable
 for_window [app_id="font-manager"] floating enable
 for_window [app_id="com.github.FontManager.FontViewer"] floating enable
-
+for_window [app_id="ca.desrt.dconf-editor"] floating enable
 
 
 ### COLORS
