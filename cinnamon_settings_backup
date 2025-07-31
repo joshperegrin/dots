@@ -1,0 +1,156 @@
+[/]
+alttab-switcher-delay=100
+alttab-switcher-enforce-primary-monitor=false
+alttab-switcher-show-all-workspaces=false
+alttab-switcher-style='thumbnails'
+alttab-switcher-warp-mouse-pointer=false
+command-history=['chrome', 'lmao', 'git', 'gimp']
+desklet-snap-interval=25
+desktop-effects-close='traditional'
+desktop-effects-map='traditional'
+desktop-effects-minimize='traditional'
+desktop-effects-on-dialogs=false
+device-aliases=['/org/freedesktop/UPower/devices/battery_BAT1:=Linux Battery']
+enabled-applets=['panel1:center:1:grouped-window-list@cinnamon.org:2', 'panel1:left:0:notifications@cinnamon.org:5', 'panel1:right:1:keyboard@cinnamon.org:8', 'panel1:right:3:network@cinnamon.org:10', 'panel1:right:4:sound@cinnamon.org:11', 'panel1:right:5:power@cinnamon.org:12', 'panel1:left:1:calendar@cinnamon.org:13', 'panel1:right:6:settings@cinnamon.org:15', 'panel1:center:0:Cinnamenu@json:20', 'panel1:right:0:separator@cinnamon.org:21', 'panel1:left:3:separator@cinnamon.org:22']
+enabled-desklets=@as []
+favorite-apps=['nemo.desktop', 'gimp.desktop', 'io.github.ungoogled_software.ungoogled_chromium.desktop:flatpak', 'Alacritty.desktop']
+hotcorner-layout=['expo:true:100', 'cinnamon-screensaver-command -l:true:1000', 'alacritty:true:1000', 'desktop:true:200']
+next-applet-id=23
+panel-edit-mode=false
+panel-zone-icon-sizes='[{"panelId": 1, "left": 16, "center": 22, "right": 16}]'
+panel-zone-symbolic-icon-sizes='[{"panelId": 1, "left": 14, "center": 22, "right": 14}]'
+panel-zone-text-sizes='[{"panelId": 1, "left": 9.5, "center": 0, "right": 9.5}]'
+panels-autohide=['1:intel', '2:false']
+panels-enabled=['1:0:bottom']
+panels-height=['1:35', '2:40']
+panels-hide-delay=['1:0', '2:0']
+panels-show-delay=['1:0', '2:0']
+window-effect-speed=1
+workspace-expo-view-as-grid=true
+
+[cinnamon-session]
+quit-time-delay=60
+
+[desktop/a11y/magnifier]
+mag-factor=1.4641000000000006
+
+[desktop/applications/terminal]
+exec='alacritty'
+exec-arg='--'
+
+[desktop/background]
+picture-uri='file:///home/josh/Pictures/walpapers/fav/1332365.jpg'
+
+[desktop/background/slideshow]
+delay=15
+image-source='directory:///home/josh/Pictures/walpapers/fav'
+random-order=true
+slideshow-enabled=false
+
+[desktop/interface]
+cursor-blink-time=1200
+cursor-size=24
+font-name='Adwaita Sans 11'
+text-scaling-factor=1.0
+toolkit-accessibility=false
+
+[desktop/keybindings/wm]
+toggle-fullscreen=['<Super>f']
+
+[desktop/media-handling]
+autorun-never=false
+
+[desktop/notifications]
+bottom-notifications=true
+fullscreen-notifications=false
+notification-duration=4
+
+[desktop/peripherals/keyboard]
+delay=uint32 500
+repeat-interval=uint32 30
+
+[desktop/peripherals/mouse]
+double-click=400
+drag-threshold=8
+natural-scroll=false
+speed=0.0
+
+[desktop/peripherals/touchpad]
+click-method='default'
+natural-scroll=false
+speed=0.41052631578947363
+
+[desktop/screensaver]
+allow-keyboard-shortcuts=false
+allow-media-control=false
+default-message=''
+floating-widgets=false
+font-date='Serif Italic 24'
+font-time='Serif Bold Italic 64'
+show-album-art=false
+show-info-panel=false
+use-custom-format=true
+
+[desktop/sound]
+event-sounds=false
+
+[desktop/wm/preferences]
+action-scroll-titlebar='shade'
+button-layout=':close'
+min-window-opacity=30
+mouse-button-modifier='<Super>'
+titlebar-font='Bitstream Vera Sans 10'
+
+[gestures]
+enabled=true
+pinch-in-2='ZOOM_IN::50::start'
+pinch-in-3='MINIMIZE::::end'
+pinch-in-4='WINDOW_WORKSPACE_NEXT::::start'
+pinch-out-2='ZOOM_OUT::50::'
+pinch-out-3='MAXIMIZE::::start'
+pinch-out-4='WINDOW_WORKSPACE_PREVIOUS::::start'
+pinch-percent-threshold=uint32 40
+swipe-down-2='PUSH_TILE_DOWN::end'
+swipe-down-3='TOGGLE_OVERVIEW::::start'
+swipe-down-4='TOGGLE_EXPO::::start'
+swipe-left-2='PUSH_TILE_LEFT::end'
+swipe-left-3='PUSH_TILE_LEFT::::start'
+swipe-left-4='WORKSPACE_NEXT::::start'
+swipe-percent-threshold=uint32 60
+swipe-right-2='PUSH_TILE_RIGHT::end'
+swipe-right-3='PUSH_TILE_RIGHT::::start'
+swipe-right-4='WORKSPACE_PREVIOUS::::start'
+swipe-up-2='PUSH_TILE_UP::end'
+swipe-up-3='TOGGLE_OVERVIEW::::start'
+swipe-up-4='TOGGLE_EXPO::::start'
+tap-2=''
+tap-3='MEDIA_PLAY_PAUSE::end'
+
+[launcher]
+check-frequency=300
+memory-limit=2048
+
+[muffin]
+bring-windows-to-current-workspace=false
+draggable-border-width=10
+edge-tiling=true
+tile-maximize=true
+workspace-cycle=true
+
+[settings-daemon/peripherals/keyboard]
+numlock-state='off'
+
+[settings-daemon/plugins/color]
+night-light-last-coordinates=(14.35, 121.0)
+night-light-temperature=uint32 2700
+
+[settings-daemon/plugins/power]
+lid-close-ac-action='suspend'
+lid-close-battery-action='suspend'
+sleep-display-ac=1800
+sleep-display-battery=1800
+sleep-inactive-ac-timeout=0
+sleep-inactive-battery-timeout=0
+
+[theme]
+name='cinnamon'
