@@ -1,5 +1,6 @@
 * {
   /* `otf-font-awesome` is required to be installed for icons */
+  all:initial;
   font-family: "Symbols Nerd Font";
   /*font-family: "D2CodingLigature Nerd Mono";*/
   font-size: 13px;
@@ -24,7 +25,9 @@ window#waybar.hidden {
   background-color: transparent;
 }
 
-#workspaces {}
+#workspaces {
+  padding: 0px 0px 0px 2px;
+}
 
 #window {
   margin: 2px;
@@ -51,7 +54,7 @@ button:hover {
 }
 
 #workspaces button {
-  padding: 0 4px;
+  padding: 0 8px;
   color: #aaaaaa;
   /*    background-color: rgba(0,0,0,0.3); */
 }
