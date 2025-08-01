@@ -7,7 +7,7 @@ from collections import Counter
 import colorsys
 
 # Directory containing files
-DIRECTORY = "/home/josh/Pictures/walpapers/fav"
+DIRECTORY = "/home/josh/Pictures/wallpapers/fav"
 # State file to remember the last processed file
 STATE_FILE = "/home/josh/bin/command_state.json"
 # Output path for Rofi
