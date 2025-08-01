@@ -181,6 +181,7 @@ for_window [app_id="font-manager"] floating enable
 for_window [app_id="com.github.FontManager.FontViewer"] floating enable
 for_window [app_id="ca.desrt.dconf-editor"] floating enable
 for_window [app_id="nemo"] floating enable
+for_window [app_id="cinnamon-settings.py"] floating enable
 
 
 ### COLORS
