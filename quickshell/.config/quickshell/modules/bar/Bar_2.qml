@@ -281,7 +281,10 @@ PanelWindow {
             font.pointSize: 8
             Behavior on color { ColorAnimation { duration: 200 } }
             
-            property string title: Mpris.players.values[0]?.trackTitle
+            property string title: {
+                const t = Mpris.players.values[0]?.trackTitle || ""
+                return t.length > 28 ? t.substring(0, 25) + "..." : t
+            }
             property string playing: (Mpris.players.values[0]?.isPlaying)? " " + title : " " + title 
 
             MouseArea {
