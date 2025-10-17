@@ -2,3 +2,4 @@ sway
 swww
 grimshot
 python-pillow
+python-numpy

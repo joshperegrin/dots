@@ -1,0 +1,309 @@
+// https://yalter.github.io/niri/Configuration:-Introduction
+
+// https://yalter.github.io/niri/Configuration:-Input
+input {
+    disable-power-key-handling
+    keyboard {
+        xkb {
+            options "caps:swapescape"
+        }
+    }
+    touchpad {
+        tap
+        //dwt
+    }
+}
+
+// https://yalter.github.io/niri/Configuration:-Outputs
+/-output "eDP-1" {
+    // off
+    mode "1920x1080@120.030"
+    scale 1.5
+    transform "normal"
+    position x=1280 y=0
+    
+    hot-corners {
+        top-left
+    }
+}
+
+// https://yalter.github.io/niri/Configuration:-Layout
+layout {
+    gaps 6
+    center-focused-column "never"
+    always-center-single-column
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+    }
+    preset-window-heights {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+    default-column-width { proportion 0.5; }
+
+    focus-ring {
+        // off
+        width 0.5
+        active-color "#7fc8ff"
+        inactive-color "#505050"
+    }
+
+    shadow {
+        on
+        softness 30
+        spread 5
+        offset x=0 y=5
+        color "#0007"
+    }
+    tab-indicator {
+        place-within-column
+        gap 4
+        width 4
+        corner-radius 4
+        
+    }
+}
+
+prefer-no-csd
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+spawn-sh-at-startup "qs"
+spawn-at-startup "swww-daemon" "-n" "wallpaper"
+spawn-at-startup "swww-daemon"
+spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store" 
+spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
+
+cursor {
+    hide-after-inactive-ms 5000
+}
+
+overview {
+    zoom 0.5
+}
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+// https://yalter.github.io/niri/Configuration:-Animations
+animations {
+    // off
+
+    // slowdown 3.0
+}
+
+// https://yalter.github.io/niri/Configuration:-Window-Rules
+
+// Work around WezTerm's initial configure bug
+// by setting an empty default-column-width.
+window-rule { match app-id=r#"^org\.wezfurlong\.wezterm$"#; default-column-width {}; }
+
+// Open the Firefox picture-in-picture player as floating by default.
+window-rule {
+    match app-id=r#"zen$"#
+    match title="^Picture-in-Picture$"
+
+    default-column-width {}
+    default-window-height {}
+    open-floating true
+}
+
+window-rule {
+    match is-window-cast-target=true
+    focus-ring {
+        active-color "#f38ba8"
+        inactive-color "#7d0d2d"
+    }
+}
+
+window-rule {
+    default-column-width { proportion 1.0; }
+    open-floating false
+    match app-id=r#"zen$"#
+    match app-id=r#"chrome-bbdeiblfgdokhlblpgeaokenkfknecgl-Default$"#
+}
+
+window-rule {
+    match app-id=r#"font-manager$"#
+    match app-id=r#"FontViewer$"#
+    match app-id=r#"dolphin$"#
+    match app-id=r#"Nautilus$"#
+    //match app-id=r#"dolphin$"#
+    open-floating true
+    default-column-width  {}
+    default-window-height {}
+}
+
+window-rule {
+    match app-id=r#"pavucontrol$"#
+    match app-id=r#"blueman-manager$"#
+    match app-id=r#"network.manager$"#
+    open-floating true
+    default-column-width { proportion 0.5; }
+    default-window-height { proportion 0.5; }
+}
+
+
+layer-rule {
+    match namespace="quickshell"
+    block-out-from "screen-capture" 
+    place-within-backdrop true
+}
+layer-rule {
+    match namespace="swww-daemon"
+    // block-out-from "screen-capture" 
+    place-within-backdrop true
+}
+layer-rule {
+    match namespace="swww-daemonwallpaper"
+    place-within-backdrop false
+}
+layer-rule {
+    match namespace="notifications"
+    shadow {
+        on
+        softness 30
+        spread 5
+        offset x=0 y=5
+        color "#0007"
+    }
+}
+
+binds {
+    // Quit Niri
+    Mod+Shift+E { quit; }
+    Ctrl+Alt+Delete { quit; }
+
+
+    ///////////////////// APPLICATIONS AND OTHER STUFF
+
+    // Applications
+    Mod+Return hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
+    Mod+W hotkey-overlay-title="Open Browser: zen" { spawn "flatpak" "run" "app.zen_browser.zen"; }
+
+    // Rofi
+    Mod+D hotkey-overlay-title="Open Application Launcher: rofi" { spawn "rofi" "-show" "drun" "-theme" "~/.config/rofi/themes/listview-with-icons.rasi"; }
+    Mod+Shift+D hotkey-overlay-title="Open Command Launcher: rofi" { spawn "rofi" "-show" "run" "-theme" "~/.config/rofi/themes/listview-without-icons.rasi"; }
+    Mod+Shift+V hotkey-overlay-title="Clipboard History: rofi" { spawn "rofi" "-modi" "clipboard:/home/josh/bin/cliphist-rofi-img" "-show" "clipboard" "-show-icons" "-theme" "~/.config/rofi/themes/listview-with-icons.rasi"; }
+    Mod+period { spawn "rofi" "-modi" "emoji" "-show" "emoji" "-theme" "/home/josh/.config/rofi/themes/listview-without-icons.rasi"; }
+    Mod+Shift+period { spawn "rofi" "-modi" "nerdy" "-show" "nerdy" "-theme" "/home/josh/.config/rofi/themes/listview-without-icons.rasi";}
+
+    // Scripts
+    Mod+T {spawn "python" "/home/josh/bin/swww_change.py"; }
+    Mod+grave {spawn "qs" "ipc" "call" "panel" "toggleTransparency"; }
+
+    // Others
+    Mod+Shift+S { screenshot; }
+    Mod+S { screenshot-screen; }
+    Mod+Shift+Slash { show-hotkey-overlay; }
+    // Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+    
+
+
+    ///////////////////// WINDOW AND WORKSPACE MANIP
+
+    // Focusing on a window / column / workspace
+    Mod+J { focus-window-or-workspace-down; }
+    Mod+K { focus-window-or-workspace-up; }
+    Mod+H { focus-column-left; }
+    Mod+L { focus-column-right; }
+
+    // Moving a Column
+    Mod+Shift+H { move-column-left; }
+    Mod+Shift+L { move-column-right; }
+    Mod+Shift+J { move-column-to-workspace-down; }
+    Mod+Shift+K { move-column-to-workspace-up; }
+
+    // Moving a Window
+    Mod+Shift+Ctrl+H { consume-or-expel-window-left; }
+    Mod+Shift+Ctrl+L { consume-or-expel-window-right; }
+    Mod+Shift+Ctrl+J { move-window-down-or-to-workspace-down; }
+    Mod+Shift+Ctrl+K { move-window-up-or-to-workspace-up; }
+
+    // Workspace Manipulation
+    Mod+Ctrl+J  { focus-workspace-down; }
+    Mod+Ctrl+K  { focus-workspace-up; }
+    Mod+U       { focus-workspace-down; }
+    Mod+I       { focus-workspace-up; }
+    Mod+Shift+U { move-workspace-down; }
+    Mod+Shift+I { move-workspace-up; }
+
+    // First and Last Columns
+    Mod+Alt+H        { focus-column-first; }
+    Mod+Alt+L        { focus-column-last; }
+    Mod+Alt+Shift+H  { move-column-to-first; }
+    Mod+Alt+Shift+L  { move-column-to-last; }
+
+    // Centering a Column
+    Mod+C { center-column; }
+    Mod+Ctrl+C { center-visible-columns; }
+
+    // Tabbed Display
+    Mod+P { toggle-column-tabbed-display; }
+
+    // Toggle Overview
+    Mod+Tab repeat=false { toggle-overview; }
+    Mod+O repeat=false { toggle-overview; }
+    
+    // Floating Windows
+    Mod+Space       { toggle-window-floating; }
+    Mod+Shift+Space { switch-focus-between-floating-and-tiling; }
+
+    // Kill Window
+    Mod+Q repeat=false { close-window; }
+
+
+    ///////////////////// WINDOW RESIZING
+
+    Mod+Shift+R { switch-preset-window-height; }
+    Mod+Ctrl+R { reset-window-height; }
+
+    Mod+1 { set-column-width "100%"; }
+    Mod+2 { set-column-width "50%"; }
+    Mod+3 { set-column-width "33.33%"; }
+    Mod+4 { set-column-width "25%"; }
+
+    Mod+0 { spawn "pavucontrol"; }
+    Mod+9 { spawn "nmgui"; }
+    Mod+8 { spawn "blueman-manager"; }
+
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Equal { set-column-width "+10%"; }
+
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+
+    Mod+F { fullscreen-window; }
+    Mod+Shift+F { expand-column-to-available-width; }
+
+    ///////////////////// MISC
+
+    // Function Keys
+//wpctl set-volume @DEFAULT_AUDIO_SINK@ "$(awk -v v=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2}') 'BEGIN{v+=0.05; if(v>1)v=1; print v}')"
+    
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "~/bin/volume-up.sh"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"; }
+    XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
+
+    // Scroll Whell
+    Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
+    Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+    Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+
+    Mod+WheelScrollRight      { focus-column-right; }
+    Mod+WheelScrollLeft       { focus-column-left; }
+    Mod+Ctrl+WheelScrollRight { move-column-right; }
+    Mod+Ctrl+WheelScrollLeft  { move-column-left; }
+
+    Mod+Shift+WheelScrollDown      { focus-column-right; }
+    Mod+Shift+WheelScrollUp        { focus-column-left; }
+    Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
+    Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
+
+    // Mod+Shift+P { power-off-monitors; }
+}
