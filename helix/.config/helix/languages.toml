@@ -13,10 +13,29 @@ language-servers = [ "vscode-html-language-server", "tailwindcss-ls" ]
 [[language]]
 name = "css"
 language-servers = [ "vscode-css-language-server", "tailwindcss-ls" ]
+auto-format = false
+
+[[language]]
+name = "json"
+auto-format = false
+
+[[language]]
+name = "jsonc"
+auto-format = false
+
+
+[[language]]
+name = "javascript"
+language-servers = [
+  "typescript-language-server",
+  "vscode-eslint-language-server",
+]
 
 [[language]]
 name = "jsx"
 language-servers = [ "typescript-language-server", "tailwindcss-ls" ]
+auto-format = false
+
 
 [[language]]
 name = "tsx"
