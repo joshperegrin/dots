@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# 1. Validate Input
+if [ -z "$1" ]; then
+    echo "Usage: nixtmux <directory>"
+    exit 1
+fi
+
+TARGET_DIR="$1"
+
+# 2. Check if directory exists
+if [ ! -d "$TARGET_DIR" ]; then
+    echo "Error: Directory '$TARGET_DIR' does not exist."
+    exit 1
+fi
+
+# 3. Get absolute path and generate a Session Name
+# We use realpath to ensure tmux gets the full path
+# We sanitize the session name (replace '.' with '_') to avoid tmux syntax errors
+FULL_PATH=$(realpath "$TARGET_DIR")
+SESSION_NAME=$(basename "$FULL_PATH" | tr . _)
+
+# 4. Check if the session already exists
+tmux has-session -t "$SESSION_NAME" 2>/dev/null
+
+if [ $? != 0 ]; then
+    # --- SESSION DOES NOT EXIST: CREATE IT ---
+
+    # Create a new detached session (-d)
+    # named as the folder (-s)
+    # starting in the specific directory (-c)
+    # and immediately run 'nix-shell' in the first window
+    tmux new-session -d -s "$SESSION_NAME" -c "$FULL_PATH" "nix-shell"
+
+    # KEY STEP: Set the default-command for THIS session only.
+    # This ensures that whenever you press (Prefix + c) to create a window
+    # or (Prefix + %) to split, it spawns 'nix-shell' instead of bash/zsh.
+    tmux set-option -t "$SESSION_NAME" default-command "nix-shell"
+    
+    # Optional: Rename the first window to something relevant
+    tmux rename-window -t "$SESSION_NAME:0" "nix-shell"
+fi
+
+# 5. Attach to the session
+# If inside tmux already, switch client; otherwise attach
+if [ -n "$TMUX" ]; then
+    tmux switch-client -t "$SESSION_NAME"
+else
+    tmux attach-session -t "$SESSION_NAME"
+fi
