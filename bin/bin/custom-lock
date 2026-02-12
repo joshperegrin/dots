@@ -1,0 +1,3 @@
+#!/bin/bash
+
+hyprlock --immediate-render --no-fade-in

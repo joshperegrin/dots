@@ -236,7 +236,7 @@ PanelWindow {
                     stdout: StdioCollector {
                         id: stdout2
                         onStreamFinished: (function(){
-                            let lines = stdout2.text.trim().split(' ')
+                            let lines = stdout2.text.trim().split('|')
                             var strength = parseInt(lines[0])
                             wifiStatus.netName = lines[1]
                             var is_online = (lines[2] == "online")

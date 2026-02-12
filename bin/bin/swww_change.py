@@ -10,6 +10,9 @@ import random
 DIRECTORY = "/home/josh/Pictures/wallpapers/fav"
 # Subdirectory for blurred wallpapers
 BLUR_DIR = os.path.join(DIRECTORY, "blurred")
+# The fixed path for the current blurred wallpaper
+CURRENT_BLURRED_FILE = os.path.join(BLUR_DIR, "current")
+
 # State file to remember the last processed file
 STATE_FILE = "/home/josh/bin/command_state.json"
 # Output path for Rofi
@@ -91,7 +94,7 @@ def run_command():
     next_index = (last_index + 1) % len(files)
     file_to_process = os.path.join(DIRECTORY, files[next_index])
 
-    # Define blurred image path in subdirectory
+    # Define blurred image path in subdirectory (the cached version)
     blur_filename = os.path.splitext(files[next_index])[0] + "_blur.jpg"
     blurred_image_path = os.path.join(BLUR_DIR, blur_filename)
 
@@ -108,6 +111,14 @@ def run_command():
     else:
         print(f"Creating blurred wallpaper: {blurred_image_path}")
         blur_image(file_to_process, blurred_image_path)
+
+    # --- NEW: Copy the specific blurred image to the static "current" path ---
+    try:
+        shutil.copy(blurred_image_path, CURRENT_BLURRED_FILE)
+        print(f"Updated fixed blurred path: {CURRENT_BLURRED_FILE}")
+    except Exception as e:
+        print(f"Error copying to currentblurredwallpaper: {e}")
+    # ------------------------------------------------------------------------
 
     # Set blurred wallpaper
     print("Setting blurred wallpaper...")

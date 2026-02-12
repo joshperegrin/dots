@@ -69,10 +69,19 @@ layout {
 prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 spawn-sh-at-startup "qs"
+spawn-sh-at-startup "vicinae server"
 spawn-at-startup "swww-daemon" "-n" "wallpaper"
 spawn-at-startup "swww-daemon"
 spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store" 
 spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
+
+debug {
+    honor-xdg-activation-with-invalid-serial
+}
+
+clipboard {
+    disable-primary
+}
 
 cursor {
     hide-after-inactive-ms 5000
@@ -139,6 +148,7 @@ window-rule {
     match app-id=r#"pavucontrol$"#
     match app-id=r#"blueman-manager$"#
     match app-id=r#"network.manager$"#
+    match app-id=r#"Timeshift-gtk$"#
     open-floating true
     default-column-width { proportion 0.5; }
     default-window-height { proportion 0.5; }
@@ -183,11 +193,12 @@ binds {
     Mod+W hotkey-overlay-title="Open Browser: zen" { spawn "flatpak" "run" "app.zen_browser.zen"; }
 
     // Rofi
-    Mod+D hotkey-overlay-title="Open Application Launcher: rofi" { spawn "rofi" "-show" "drun" "-theme" "~/.config/rofi/themes/listview-with-icons.rasi"; }
+    // Mod+D hotkey-overlay-title="Open Application Launcher: rofi" { spawn "rofi" "-show" "drun" "-theme" "~/.config/rofi/themes/listview-with-icons.rasi"; }
+    Mod+D hotkey-overlay-title="Open Launcher: vicinae" { spawn "vicinae" "toggle"; }
     Mod+Shift+D hotkey-overlay-title="Open Command Launcher: rofi" { spawn "rofi" "-show" "run" "-theme" "~/.config/rofi/themes/listview-without-icons.rasi"; }
-    Mod+Shift+V hotkey-overlay-title="Clipboard History: rofi" { spawn "rofi" "-modi" "clipboard:/home/josh/bin/cliphist-rofi-img" "-show" "clipboard" "-show-icons" "-theme" "~/.config/rofi/themes/listview-with-icons.rasi"; }
-    Mod+period { spawn "rofi" "-modi" "emoji" "-show" "emoji" "-theme" "/home/josh/.config/rofi/themes/listview-without-icons.rasi"; }
-    Mod+Shift+period { spawn "rofi" "-modi" "nerdy" "-show" "nerdy" "-theme" "/home/josh/.config/rofi/themes/listview-without-icons.rasi";}
+    Mod+Shift+V hotkey-overlay-title="Clipboard History: vicinae" { spawn "vicinae" "vicinae://extensions/vicinae/clipboard/history"; }
+    Mod+period { spawn "vicinae" "vicinae://extensions/vicinae/core/search-emojis"; }
+    Mod+Shift+period { spawn "vicinae" "vicinae://extensions/josephschmitt/gif-search/search";}
 
     // Scripts
     Mod+T {spawn "python" "/home/josh/bin/swww_change.py"; }
