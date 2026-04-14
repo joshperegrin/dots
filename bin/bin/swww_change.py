@@ -16,7 +16,6 @@ CURRENT_BLURRED_FILE = os.path.join(BLUR_DIR, "current")
 # State file to remember the last processed file
 STATE_FILE = "/home/josh/bin/command_state.json"
 # Output path for Rofi
-ROFI_IMAGE_PATH = os.path.expanduser("~/.config/rofi/images/background.jpg")
 
 def ensure_blur_dir():
     """Ensure the blurred subdirectory exists."""
@@ -130,7 +129,6 @@ def run_command():
         print("Error setting blurred wallpaper:", result.stderr)
 
     # Convert for Rofi preview
-    convert_to_jpg(file_to_process, ROFI_IMAGE_PATH)
 
     # Save state
     save_last_index(next_index)

@@ -41,11 +41,30 @@ auto-format = false
 name = "tsx"
 language-servers = [ "typescript-language-server", "tailwindcss-ls" ]
 
+# [[language]]
+# name="markdown"
+# language-servers = ["marksman", "typos"]
+# soft-wrap= {enable=true, max-wrap=25, max-indent-retain=0, wrap-indicator=""}
+# text-width = 30
+
+
 [[language]]
-name="markdown"
-language-servers = ["marksman", "typos"]
+name = "markdown"
 soft-wrap= {enable=true, max-wrap=25, max-indent-retain=0, wrap-indicator=""}
-text-width = 30
+scope = "source.md"
+injection-regex = "md|markdown|"
+file-types = ["md", "markdown"]
+roots = [".zk"]
+language-servers = [ "zk" ]
+
+[[grammar]]
+name = "markdown"
+source = { git = "https://github.com/MDeiml/tree-sitter-markdown", rev = "7e7aa9a25ca9729db9fe22912f8f47bdb403a979", subpath = "tree-sitter-markdown" }
+
+[language-server.zk]
+command = "zk"
+args = ["lsp"]
+
 
 [language-server.typos]
 command="typos-lsp"
